@@ -1,1 +1,1 @@
-https://github.com/EstivenValencia/telefonia-AI-dockers
+https://github.com/EstivenValencia/telefonia-AI-docker-compose.git
