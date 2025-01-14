@@ -2,7 +2,9 @@
 
 Este proyecto implementa un sistema de predicción que utiliza un modelo de randomforest para predecir si un cliente de Telefónica abandonará el servicio o no. El sistema ofrece múltiples interfaces de comunicación, incluyendo REST, Kafka y gRPC.
 
-En esta parte de proyecto, cada uno de los servicios se disponibilizan en un contenedor de docker, iniciando con la creacion del dockerfile, la construccion de la imagen y la ejecución de los contenedores.
+## Tercera Entrega: Integración con Docker Compose
+
+En esta parte de proyecto, se define un archivo docker compose, que permite construir las imagenes, lanzar los contenedores, crear redes y detener contenedores, así como el manejo volumenes y variables de entorno de manera sencilla.
 
 ## Datos de entrada para el modelo
 
@@ -54,9 +56,7 @@ El proyecto está organizado en los siguientes componentes, cada uno disponibili
    - Este directorio se monta en los contenedores que necesitan acceso al modelo.
 
 6. **Scripts de utilidad**:
-   - `buildAll.sh`: Construye las imagenes de los contenedores
-   - `runAll.sh`: Crea la red para la comunicacion entre dockers y lanza cada uno de los contenedores
-   - `stopdAll.sh`: Detiene los contenedores y elimina las reddes creadas
+   - `docker-compose.yaml`: Construye, lanza y detiene los contenedores
     
    - `tests.py`: Script para realizar pruebas en las diferentes interfaces (se ejecuta fuera de los contenedores).
 
@@ -86,28 +86,14 @@ El sistema utiliza hilos para manejar múltiples solicitudes simultáneamente, e
 
 ## Cómo usar
 
-1. **Crear imagenes**:
+1. **Levantar todos los contenedores**:
 
 
 ```bash
-   bash buildAll.sh
+   docker compose up -d
 ```
 
-2. **Crear redes y lanzar contenedores**:
-
-```bash
-   bash runAll.sh
-```
-
-Este script inicia los servidores REST, gRPC, consumidor de Kafka y el servidor de kafka.
-
-3. **Detiene los contenedores y los elimina**:
-
-```bash
-   bash stopAll.sh
-```
-
-4. **Realizar pruebas**:
+2. **Realizar pruebas**:
 
 ```bash
    python -m venv env
